@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 
+#[Fillable(['title', 'content', 'slug', 'user_id', 'category_id'])]
 class Article extends Model
 {
     public function user()
