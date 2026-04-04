@@ -32,7 +32,7 @@ class ArticleController extends Controller
             'user_id' => 'required|exists:users,id',
             'category_id' => 'nullable|exists:categories,id'
         ]);
-
+        // dd($request->all());
         $article = Article::create([
             'user_id' => $request->user_id,
             'category_id' => $request->category_id,
