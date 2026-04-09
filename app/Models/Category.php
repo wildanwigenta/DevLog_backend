@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 #[Fillable(['name', 'slug'])]
 class Category extends Model
 {
-        public function articles()
-        {
-            return $this->hasMany(Article::class);
-        }   
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }
