@@ -17,15 +17,17 @@ class ArticleController extends Controller
             ->latest()
             ->paginate(5);
 
-    // SEARCH
-    if ($request->search) {
-        $query->where('title', 'like', '%' . $request->search . '%');
-    }
-    
-    // FILTER CATEGORY
-    if ($request->category_id) {
-        $query->where('category_id', $request->category_id);
-    }   
+        $query = Article::with(['user','category']);    
+        
+        // SEARCH
+        if ($request->search) {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+        
+        // FILTER CATEGORY
+        if ($request->category_id) {
+            $query->where('category_id', $request->category_id);
+        }   
 
         return ArticleResource::collection($articles);  
     }
