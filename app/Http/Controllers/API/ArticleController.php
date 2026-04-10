@@ -11,11 +11,18 @@ use App\Http\Resources\ArticleResource;
 class ArticleController extends Controller
 {
     // GET /api/articles
-    public function index()
+    public function index(Request $request)
     {
         $articles = Article::with(['user', 'category'])
             ->latest()
             ->paginate(5);
+
+    // SEARCH
+    if ($request->search) {
+        $query->where('title', 'like', '%' . $request->search . '%');
+    }
+    
+     
 
         return ArticleResource::collection($articles);  
     }
