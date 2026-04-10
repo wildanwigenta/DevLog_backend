@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Http\Resources\ArticleResource; 
 
 class ArticleController extends Controller
 {
@@ -16,11 +17,7 @@ class ArticleController extends Controller
             ->latest()
             ->get();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'List Articles',
-            'data' => $articles
-        ]);
+        return ArticleResource::collection($articles);  
     }
 
     // POST /api/articles
