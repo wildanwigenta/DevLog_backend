@@ -22,7 +22,10 @@ class ArticleController extends Controller
         $query->where('title', 'like', '%' . $request->search . '%');
     }
     
-     
+    // FILTER CATEGORY
+    if ($request->category_id) {
+        $query->where('category_id', $request->category_id);
+    }   
 
         return ArticleResource::collection($articles);  
     }
