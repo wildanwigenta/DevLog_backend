@@ -15,7 +15,7 @@ class ArticleController extends Controller
     {
         $articles = Article::with(['user', 'category'])
             ->latest()
-            ->get();
+            ->paginate(5);
 
         return ArticleResource::collection($articles);  
     }
